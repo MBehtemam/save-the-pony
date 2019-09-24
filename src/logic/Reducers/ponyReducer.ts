@@ -1,15 +1,12 @@
 import * as ActionTypes from "../Actions/ActionTypes";
-export interface IState {
-  ponyPosition: number;
-  ponyName: string;
-}
+import IPony from "../Interfaces/IPony";
 
-export const initialState: IState = {
+export const initialState: IPony = {
   ponyPosition: -1,
   ponyName: ""
 };
 
-const ponyReducer = (state: IState = initialState, action: any): IState => {
+const ponyReducer = (state: IPony = initialState, action: any): IPony => {
   switch (action.type) {
     case ActionTypes.SET_PONY:
       return action.payload;

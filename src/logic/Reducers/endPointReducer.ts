@@ -1,11 +1,13 @@
 import * as ActionTypes from "../Actions/ActionTypes";
-export interface IState {
-  position: number;
-}
-export const initialState: IState = {
+import IEndPoint from "../Interfaces/IEndPoint";
+
+export const initialState: IEndPoint = {
   position: -1
 };
-const endPointReducer = (state: IState = initialState, action: any): IState => {
+const endPointReducer = (
+  state: IEndPoint = initialState,
+  action: any
+): IEndPoint => {
   switch (action.type) {
     case ActionTypes.SET_END_POINT_POSITION:
       return {

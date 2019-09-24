@@ -1,12 +1,13 @@
 import * as ActionTypes from "../Actions/ActionTypes";
-import ponyReducer, { initialState, IState } from "./ponyReducer";
+import ponyReducer, { initialState } from "./ponyReducer";
+import IPony from "../Interfaces/IPony";
 
 describe("Test Case for Pony Reducer", () => {
   it("should equal to default state", () => {
     expect(ponyReducer(undefined, {})).toEqual(initialState);
   });
   it("should clear the pony from reducer", () => {
-    const pony: IState = {
+    const pony: IPony = {
       ponyName: "poniee",
       ponyPosition: 10
     };
@@ -15,7 +16,7 @@ describe("Test Case for Pony Reducer", () => {
     );
   });
   it("should set the complete pony object", () => {
-    const pony: IState = {
+    const pony: IPony = {
       ponyPosition: 10,
       ponyName: "poniee"
     };

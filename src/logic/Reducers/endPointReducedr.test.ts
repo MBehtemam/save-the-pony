@@ -1,9 +1,9 @@
 import * as ActionTypes from "../Actions/ActionTypes";
-import endPointReducer, { IState, initialState } from "./endPointReducer";
-
+import endPointReducer, { initialState } from "./endPointReducer";
+import IEndPoint from "../Interfaces/IEndPoint";
 describe("Test suits for end point reudcer", () => {
   it("should set the end point", () => {
-    const state: IState = {
+    const state: IEndPoint = {
       position: 10
     };
     expect(
@@ -14,7 +14,7 @@ describe("Test suits for end point reudcer", () => {
     ).toEqual(state);
   });
   it("should clear the postion", () => {
-    const state: IState = {
+    const state: IEndPoint = {
       position: 10
     };
     expect(

@@ -1,9 +1,9 @@
 import * as ActionTypes from "../Actions/ActionTypes";
-import domokunReducer, { IState, initialState } from "./domkunReducer";
-
+import domokunReducer, { initialState } from "./domkunReducer";
+import IDomokun from "../Interfaces/IDomokun";
 describe("Test suits for domokun reudcer", () => {
   it("should set the position", () => {
-    const state: IState = {
+    const state: IDomokun = {
       position: 10
     };
     expect(
@@ -14,7 +14,7 @@ describe("Test suits for domokun reudcer", () => {
     ).toEqual(state);
   });
   it("should clear the position of domokun", () => {
-    const state: IState = {
+    const state: IDomokun = {
       position: 100
     };
     expect(
