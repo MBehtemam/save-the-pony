@@ -5,12 +5,14 @@ import endPointReducer from "./endPointReducer";
 import ponyReducer from "./ponyReducer";
 import gameStateReducer from "./gameStateReducer";
 import poniesReducer from "./poniesReducers";
+import customGameReducer from "./customGameReducer";
 const rootReducer = combineReducers({
   board: boardReducer,
   domokun: domokunReducer,
   endPoint: endPointReducer,
   pony: ponyReducer,
   gameState: gameStateReducer,
-  ponies: poniesReducer
+  ponies: poniesReducer,
+  customGame: customGameReducer
 });
 export default rootReducer;
