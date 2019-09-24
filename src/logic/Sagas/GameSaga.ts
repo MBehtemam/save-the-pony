@@ -16,6 +16,8 @@ import getBoardHeight from "./selectors/getBoardHeight";
 import getMaezeId from "./selectors/getMazeId";
 import getPonyPosition from "./selectors/getPonyPosition";
 import IMove from "../Interfaces/IMove";
+import IMoveStatusResponse from "../Interfaces/IMoveStatusResponse";
+import MoveStatus from "../Enums/MoveStatus";
 
 const mApi = new MazeAPI();
 function* createGame(mazeInfo: ICreateMaze) {
@@ -62,7 +64,13 @@ function* MovePony(interestedPosition: number) {
   });
   if (moveDirection.ok) {
     const moveInfo: IMove = { direction: moveDirection.direction };
-    const moveResult = yield call(mApi.Move, { mazeId, moveInfo });
+    const moveResult: IMoveStatusResponse = yield call(mApi.Move, {
+      mazeId,
+      moveInfo
+    });
+    if (moveResult["state-result"] === MoveStatus.ACCEPTED) {
+      put(PonyActions.setPonyPosition(interestedPosition));
+    }
   } else {
     //raise some action for bad selecting
   }
