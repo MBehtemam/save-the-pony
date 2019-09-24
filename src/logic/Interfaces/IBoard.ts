@@ -3,6 +3,6 @@ interface IBoard {
   width: number;
   height: number;
   difficulty: number;
-  data: MoveEnum[];
+  data: [[MoveEnum?, MoveEnum?, MoveEnum?, MoveEnum?]];
 }
 export default IBoard;

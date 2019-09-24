@@ -55,7 +55,8 @@ describe("Test suits for custom game creating", () => {
     const newState: ICustomGame = {
       width: 15,
       height: 15,
-      ponyName: "poniee"
+      ponyName: "poniee",
+      mazeId: "adsfkasdkfj"
     };
     expect(
       customGameReducer(undefined, {
@@ -68,7 +69,8 @@ describe("Test suits for custom game creating", () => {
     const newState: ICustomGame = {
       width: 15,
       height: 15,
-      ponyName: "poniee"
+      ponyName: "poniee",
+      mazeId: "asdfklajsdfklj"
     };
     expect(
       customGameReducer(undefined, {
@@ -76,5 +78,19 @@ describe("Test suits for custom game creating", () => {
         payload: newState
       })
     ).toEqual(initialState);
+  });
+
+  it("should set game maze id", () => {
+    const mazeId = "adsfasdfadsf";
+    const newState: ICustomGame = {
+      ...initialState,
+      mazeId
+    };
+    expect(
+      customGameReducer(undefined, {
+        type: ActionTypes.CUSTOME_GAME_SET_MAZE_ID,
+        payload: mazeId
+      })
+    ).toEqual(newState);
   });
 });

@@ -5,7 +5,8 @@ import ICustomGame from "../Interfaces/ICustomGame";
 export const initialState: ICustomGame = {
   width: 15,
   height: 15,
-  ponyName: ""
+  ponyName: "",
+  mazeId: ""
 };
 const customGameReducer = (
   state: ICustomGame = initialState,
@@ -29,6 +30,11 @@ const customGameReducer = (
       };
     case ActionTypes.CUSTOM_GAME_SET:
       return action.payload;
+    case ActionTypes.CUSTOME_GAME_SET_MAZE_ID:
+      return {
+        ...state,
+        mazeId: action.payload
+      };
     case ActionTypes.CLEAR_CUSTOM_GAME:
       return initialState;
     default:
