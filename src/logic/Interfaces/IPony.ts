@@ -1,5 +1,6 @@
 interface IPony {
-  ponyPosition: number;
+  ponyPosition?: number;
   ponyName: string;
+  ponySprite?: string;
 }
 export default IPony;
