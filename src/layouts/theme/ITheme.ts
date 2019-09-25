@@ -3,7 +3,7 @@ interface ITheme {
     primary: string;
     secondary: string;
     tertiary: string;
-    bodyBackground: string;
+    containerBackground: string;
     inputBgColor: string;
     inputBorderColor: string;
     success: string;

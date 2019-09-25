@@ -2,7 +2,7 @@ import ITheme from "./ITheme";
 
 const main: ITheme = {
   colors: {
-    bodyBackground: "#EB458B",
+    containerBackground: "#EB458B",
     textColor: "#fff",
     error: "#d50000",
     warning: "#fbc02d",
