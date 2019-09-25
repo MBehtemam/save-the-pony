@@ -1,6 +1,16 @@
 import IPony from "../Interfaces/IPony";
 
-const poniesReducer = (state: IPony[] = [], action: any): IPony[] => {
+const initialState: IPony[] = [
+  {
+    ponyName: "Ginger Gold",
+    ponySprite: "Ginger_Gold.png"
+  },
+  {
+    ponySprite: "Twinkleshine.png",
+    ponyName: "Twinkleshine"
+  }
+];
+const poniesReducer = (state: IPony[] = initialState, action: any): IPony[] => {
   switch (action.type) {
     default:
       return state;

@@ -54,3 +54,11 @@ export const customGameSetMazeId = (mazeId: string): IAction => ({
   type: ActionTypes.CUSTOME_GAME_SET_MAZE_ID,
   payload: mazeId
 });
+
+/**
+ * create a custom game
+ */
+export const createCustomGame = () => ({
+  type: ActionTypes.CUSTOM_GAME_CREATE,
+  payload: null
+});
