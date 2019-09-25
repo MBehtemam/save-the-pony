@@ -5,7 +5,7 @@ interface IBoardResponse {
   "end-point": [number];
   size: [number, number];
   difficulty: number;
-  data: [[MoveEnum?, MoveEnum?, MoveEnum?, MoveEnum?]];
+  data: [][];
   maze_id: string;
   "game-state": {
     state: string;
