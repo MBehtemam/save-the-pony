@@ -5,8 +5,14 @@ import HudCharacter from "../components/HudCharacter.styled";
 import HudStatus from "../components/HudStatus.styled";
 import CircleStatus from "../layouts/components/CircleStatus/CircleStatus.styled";
 import StatusEnum from "../logic/Enums/StatusEnum";
+import NotificationBar from "../layouts/Typography/NotificationBar.styled";
+import BoardContainer from "../components/Board/BoardContainer.styled";
+import BoardCell from "../components/Board/BoardCell.styled";
 class Page extends Component {
   render() {
+    let colors = ["dark", "light"];
+    const total = 100;
+    const width = 10;
     return (
       <Container useBackground={true} useBorderRadius={true} direction="column">
         <Hud>
@@ -17,7 +23,23 @@ class Page extends Component {
             <CircleStatus status={StatusEnum.NORMAL} />
           </HudStatus>
         </Hud>
-        <span>Hi I'm game</span>
+        <NotificationBar>
+          <span>I'm a Notification</span>
+        </NotificationBar>
+        <BoardContainer>
+          {Array.from(Array(total).keys()).map((cell, index) => {
+            if (total % 2 === 0 && index !== 0 && index % width === 0) {
+              colors = colors.reverse();
+            }
+            return (
+              <BoardCell
+                key={index}
+                size={(100 / width).toString()}
+                backgroundColor={index % 2 === 0 ? colors[0] : colors[1]}
+              ></BoardCell>
+            );
+          })}
+        </BoardContainer>
       </Container>
     );
   }

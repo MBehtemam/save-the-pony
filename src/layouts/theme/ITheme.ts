@@ -12,6 +12,7 @@ interface ITheme {
     textColor: string;
     inputTextColor: string;
     hudBackgroundColor: string;
+    boardCellColors: [string, string];
   };
   size: {
     borderRadius: string;
