@@ -12,7 +12,11 @@ const main: ITheme = {
     tertiary: "#f73378",
     inputBgColor: "#ffef62",
     inputBorderColor: "#ffeb3b",
-    inputTextColor: "#fff"
+    inputTextColor: "#fff",
+    hudBackgroundColor: "#565656"
+  },
+  size: {
+    borderRadius: "10px"
   }
 };
 export default main;

@@ -7,7 +7,7 @@ const initialState: IPony[] = [
   },
   {
     ponySprite: "Twinkleshine.png",
-    ponyName: "Twinkleshine"
+    ponyName: "Twilight Sparkle"
   }
 ];
 const poniesReducer = (state: IPony[] = initialState, action: any): IPony[] => {

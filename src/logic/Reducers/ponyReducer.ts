@@ -8,6 +8,11 @@ export const initialState: IPony = {
 
 const ponyReducer = (state: IPony = initialState, action: any): IPony => {
   switch (action.type) {
+    case ActionTypes.SET_PONY_NAME:
+      return {
+        ...state,
+        ponyName: action.payload
+      };
     case ActionTypes.SET_PONY:
       return action.payload;
     case ActionTypes.CLEAR_PONY:

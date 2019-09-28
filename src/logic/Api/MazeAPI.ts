@@ -7,6 +7,10 @@ class MazeAPI {
     const url = "https://ponychallenge.trustpilot.com/pony-challenge/maze";
     try {
       const response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
         method: HttpEnum.POST,
         body: JSON.stringify(mazeInfo)
       });

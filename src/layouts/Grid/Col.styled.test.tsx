@@ -13,7 +13,7 @@ describe("Test suits for <Col />", () => {
       </ThemeProviderForTest>
     );
     const tree = renderer.create(<MyComponent />).toJSON();
-    expect(tree).toHaveStyleRule("flex", "1");
+    expect(tree).toHaveStyleRule("flex-basis", "1");
   });
 
   it("should have custom flex size", () => {
@@ -23,6 +23,6 @@ describe("Test suits for <Col />", () => {
       </ThemeProviderForTest>
     );
     const tree = renderer.create(<MyComponent />).toJSON();
-    expect(tree).toHaveStyleRule("flex", "5");
+    expect(tree).toHaveStyleRule("flex-basis", "20%");
   });
 });

@@ -11,6 +11,10 @@ interface ITheme {
     error: string;
     textColor: string;
     inputTextColor: string;
+    hudBackgroundColor: string;
+  };
+  size: {
+    borderRadius: string;
   };
 }
 export default ITheme;

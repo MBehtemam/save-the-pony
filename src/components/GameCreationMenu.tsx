@@ -14,6 +14,7 @@ interface IProps {
   customGameSetHeight: Function;
   customGameSetWidth: Function;
   customGameSetPonyName: Function;
+  createCustomGame: Function;
   customGame: ICustomGame;
   ponies: IPony[];
 }
@@ -24,6 +25,7 @@ class GameCreationMenu extends Component<IProps> {
       customGameSetWidth,
       customGameSetHeight,
       customGameSetPonyName,
+      createCustomGame,
       ponies
     } = this.props;
     return (
@@ -65,7 +67,7 @@ class GameCreationMenu extends Component<IProps> {
           </Col>
           <Row horizontalAlign="space-around">
             {ponies.map((pony: IPony) => (
-              <Col size={3}>
+              <Col size={3} key={pony.ponyName}>
                 <PonyButton
                   onClick={() => customGameSetPonyName(pony.ponyName)}
                   className={
@@ -84,7 +86,7 @@ class GameCreationMenu extends Component<IProps> {
         </Row>
         <Row>
           <Col>
-            <button>Create a Game</button>
+            <button onClick={() => createCustomGame()}>Create a Game</button>
           </Col>
         </Row>
       </Row>
@@ -96,14 +98,14 @@ const mapStateToProps = (state: any) => ({
   customGame: state.customGame,
   ponies: state.ponies
 });
-
 const mapDispatchToProps = (dispatch: Function) => ({
   customGameSetHeight: (height: number) =>
     dispatch(CustomGameActions.customGameSetHeight(height)),
   customGameSetWidth: (width: number) =>
     dispatch(CustomGameActions.customGameSetWidth(width)),
   customGameSetPonyName: (ponyName: string) =>
-    dispatch(CustomGameActions.customGameSetPonyName(ponyName))
+    dispatch(CustomGameActions.customGameSetPonyName(ponyName)),
+  createCustomGame: () => dispatch(CustomGameActions.createCustomGame())
 });
 export default connect(
   mapStateToProps,
