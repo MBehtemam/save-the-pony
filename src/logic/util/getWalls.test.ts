@@ -22,7 +22,13 @@ describe("Test suits for getWalls()", () => {
       [], // 14
       ["north"] // 15 11
     ];
-    const walls = [-1, -4, 0, -3, -2, 2, 1, 3, 7, 4, 5, 6, 10, 8, 11];
+    const walls = [2, 1, 3, 7, 4, 5, 6, 10, 8, 11];
+    expect(getWalls(data, width)).toEqual(walls);
+  });
+  it("should return empty array", () => {
+    const data: string[][] = [];
+    const walls: number[] = [];
+    const width = 4;
     expect(getWalls(data, width)).toEqual(walls);
   });
 });

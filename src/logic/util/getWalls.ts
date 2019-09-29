@@ -1,5 +1,4 @@
 import MoveEnum from "../Enums/MoveEnum";
-import { number } from "prop-types";
 
 const getWalls = (data: string[][], width: number) => {
   const walls = data
@@ -14,14 +13,16 @@ const getWalls = (data: string[][], width: number) => {
             return index - width;
           } else if (point === MoveEnum.SOUTH) {
             return index + width;
+          } else {
+            return -1;
           }
         });
       } else {
-        return undefined;
+        return [];
       }
     })
     .reduce((acc: number[], val: number[]) => acc.concat(val), [])
-    .filter((item: number | undefined) => item !== undefined)
+    .filter(item => item > 0)
     .reduce((pValue: number[], current: number) => {
       if (pValue.includes(current)) {
         return pValue;
@@ -29,7 +30,6 @@ const getWalls = (data: string[][], width: number) => {
         return [...pValue, current];
       }
     }, []);
-
   return walls;
 };
 export default getWalls;

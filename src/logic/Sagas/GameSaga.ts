@@ -7,6 +7,7 @@ import * as DomokunActions from "../Actions/DomokunActions";
 import * as EndPointActions from "../Actions/EndPointActions";
 import * as GameStateActions from "../Actions/GameStateActions";
 import * as GameScreenActions from "../Actions/GameScreenActions";
+import * as WallsActions from "../Actions/WallsAction";
 import MazeAPI from "../Api/MazeAPI";
 import ICreateMaze from "../Interfaces/ICreateMaze";
 import IBoardResponse from "../Interfaces/IBoardResponse";
@@ -21,6 +22,7 @@ import IMove from "../Interfaces/IMove";
 import IMoveStatusResponse from "../Interfaces/IMoveStatusResponse";
 import MoveStatus from "../Enums/MoveStatus";
 import GameScreen from "../Enums/GameScreenEnum";
+import GetWalls from "../util/getWalls";
 
 const mApi = new MazeAPI();
 
@@ -59,6 +61,7 @@ function* createGame() {
   if (board["game-state"].state === "Active") {
     yield put(GameStateActions.setGameStart());
     yield put(GameScreenActions.setGameScreen(GameScreen.GAME));
+    yield put(WallsActions.setWalls(GetWalls(board.data, board.size[0])));
   }
 }
 
