@@ -7,6 +7,7 @@ import gameStateReducer from "./gameStateReducer";
 import poniesReducer from "./poniesReducers";
 import customGameReducer from "./customGameReducer";
 import wallsReducer from "./wallsReducer";
+import gameScreenReducer from "./gameScreenReducer";
 const rootReducer = combineReducers({
   board: boardReducer,
   domokun: domokunReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   gameState: gameStateReducer,
   ponies: poniesReducer,
   customGame: customGameReducer,
-  walls: wallsReducer
+  walls: wallsReducer,
+  gameScreen: gameScreenReducer
 });
 export default rootReducer;

@@ -1,12 +1,12 @@
 import * as ActionTypes from "../Actions/ActionTypes";
 import IAction from "../Interfaces/IAction";
 
-export const initialState: number[] = [];
+export const initialState: string[][] = [];
 
 const wallsReducer = (
-  state: number[] = initialState,
+  state: string[][] = initialState,
   action: IAction
-): number[] => {
+): string[][] => {
   switch (action.type) {
     case ActionTypes.SET_WALLS:
       return action.payload;

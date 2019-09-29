@@ -1,7 +1,7 @@
 import * as ActionTypes from "./ActionTypes";
 import IAction from "../Interfaces/IAction";
 
-export const setWalls = (walls: number[]): IAction => ({
+export const setWalls = (walls: string[][]): IAction => ({
   type: ActionTypes.SET_WALLS,
   payload: walls
 });

@@ -14,7 +14,7 @@ const main: ITheme = {
     inputBorderColor: "#ffeb3b",
     inputTextColor: "#fff",
     hudBackgroundColor: "#565656",
-    boardCellColors: ["#424242", "#bdbdbd"]
+    boardCellColors: ["#424242", "#616161"]
   },
   size: {
     borderRadius: "10px"

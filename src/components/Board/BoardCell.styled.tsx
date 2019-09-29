@@ -4,6 +4,10 @@ import ParityEnum from "../../logic/Enums/ParityEnum";
 interface IBoardCell {
   rowParity: ParityEnum;
   cellParity: ParityEnum;
+  westBlock?: boolean;
+  northBlock?: boolean;
+  eastBlock?: boolean;
+  southBlock?: boolean;
   size: string;
   theme: ITheme;
 }
@@ -11,24 +15,46 @@ const BoardCell = styled.div<IBoardCell>`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 0 ${props => props.size + "%"};
+  flex: 1 0 calc(${props => props.size + "%"} - 8px);
   padding-top: ${props => props.size + "%"};
+
+  border-top-color: ${props =>
+    props.northBlock ? "red" : props.theme.colors.boardCellColors[0]};
+  border-top-width: ${props => (props.northBlock ? "3px" : "3px")};
+
+  border-bottom-color: ${props =>
+    props.southBlock ? "red" : props.theme.colors.boardCellColors[0]};
+  border-bottom-width: ${props => (props.southBlock ? "3px" : "3px")};
+
+  border-right-color: ${props =>
+    props.eastBlock ? "red" : props.theme.colors.boardCellColors[0]};
+  border-right-width: ${props => (props.eastBlock ? "3px" : "3px")};
+
+  border-left-color: ${props =>
+    props.westBlock ? "red" : props.theme.colors.boardCellColors[0]};
+  border-left-width: ${props => (props.westBlock ? "3px" : "3px")};
+
+  border-style: solid;
   cursor: pointer;
   background-color: ${props => {
-    if (props.rowParity === ParityEnum.EVEN) {
-      if (props.cellParity === ParityEnum.EVEN) {
-        return props.theme.colors.boardCellColors[0];
-      } else if (props.cellParity === ParityEnum.ODD) {
-        return props.theme.colors.boardCellColors[1];
-      }
-    } else if (props.rowParity === ParityEnum.ODD) {
-      if (props.cellParity === ParityEnum.ODD) {
-        return props.theme.colors.boardCellColors[0];
-      } else if (props.cellParity === ParityEnum.EVEN) {
-        return props.theme.colors.boardCellColors[1];
-      }
-    }
+    return props.theme.colors.boardCellColors[0];
+    // if (props.rowParity === ParityEnum.EVEN) {
+    //   if (props.cellParity === ParityEnum.EVEN) {
+    //     return props.theme.colors.boardCellColors[0];
+    //   } else if (props.cellParity === ParityEnum.ODD) {
+    //     return props.theme.colors.boardCellColors[1];
+    //   }
+    // } else if (props.rowParity === ParityEnum.ODD) {
+    //   if (props.cellParity === ParityEnum.ODD) {
+    //     return props.theme.colors.boardCellColors[0];
+    //   } else if (props.cellParity === ParityEnum.EVEN) {
+    //     return props.theme.colors.boardCellColors[1];
+    //   }
+    // }
   }};
+  &:hover {
+    background-color: ${props => props.theme.colors.boardCellColors[1]};
+  }
   &.wall {
     background-image: url(${require("../../assets/images/characters/wall.png")});
     background-color: orange;

@@ -21,8 +21,6 @@ import getPonyPosition from "./selectors/getPonyPosition";
 import IMove from "../Interfaces/IMove";
 import IMoveStatusResponse from "../Interfaces/IMoveStatusResponse";
 import MoveStatus from "../Enums/MoveStatus";
-import GameScreen from "../Enums/GameScreenEnum";
-import GetWalls from "../util/getWalls";
 
 const mApi = new MazeAPI();
 
@@ -31,7 +29,8 @@ function* createGame() {
   const mazeInfo: ICreateMaze = {
     "maze-height": parseInt(info.height, 10),
     "maze-width": parseInt(info.width, 10),
-    "maze-player-name": info.ponyName
+    "maze-player-name": info.ponyName,
+    difficulty: 0
   };
   const mazeId: string = yield call(mApi.createMaze, mazeInfo);
   //Setting Maze Id
@@ -40,6 +39,7 @@ function* createGame() {
   //Setting Player Name
   yield put(PonyActions.setPonyName(mazeInfo["maze-player-name"]));
   const board: IBoardResponse = yield call(mApi.getMaze, mazeId);
+  console.log(board);
   //Set Board
   yield put(
     MazeActions.setBoard({
@@ -60,8 +60,8 @@ function* createGame() {
   //Set Game Start
   if (board["game-state"].state === "Active") {
     yield put(GameStateActions.setGameStart());
-    yield put(GameScreenActions.setGameScreen(GameScreen.GAME));
-    yield put(WallsActions.setWalls(GetWalls(board.data, board.size[0])));
+    yield put(GameScreenActions.setGameScreenGame());
+    yield put(WallsActions.setWalls(board.data));
   }
 }
 
