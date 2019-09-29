@@ -2,12 +2,16 @@ import IPony from "../Interfaces/IPony";
 
 const initialState: IPony[] = [
   {
-    ponyName: "Ginger Gold",
-    ponySprite: "Ginger_Gold.png"
+    ponyName: "Twilight Sparkle",
+    ponySprite: "twilight-sparkle.png"
   },
   {
-    ponySprite: "Twinkleshine.png",
-    ponyName: "Twilight Sparkle"
+    ponyName: "Pinkie Pie",
+    ponySprite: "pinkie-pie.png"
+  },
+  {
+    ponySprite: "Rainbow-Dash.png",
+    ponyName: "Rainbow Dash"
   }
 ];
 const poniesReducer = (state: IPony[] = initialState, action: any): IPony[] => {

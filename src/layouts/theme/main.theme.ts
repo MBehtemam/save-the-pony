@@ -10,7 +10,7 @@ const main: ITheme = {
     primary: "#ab003c",
     secondary: "#f50057",
     tertiary: "#f73378",
-    inputBgColor: "#ffef62",
+    inputBgColor: "#880e4f",
     inputBorderColor: "#ffeb3b",
     inputTextColor: "#fff",
     hudBackgroundColor: "#565656",

@@ -9,6 +9,7 @@ const InputControl = styled.div<IInputControl>`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: "Pacifico", cursive;
   input {
     background-color: ${props => props.theme.colors.inputBgColor || "inherit"};
     border-style: solid;
@@ -19,6 +20,8 @@ const InputControl = styled.div<IInputControl>`
     padding: 5px;
     text-align: center;
     width: 50%;
+    font-family: "Pacifico", cursive;
+    font-size: 1.3em;
   }
 `;
 

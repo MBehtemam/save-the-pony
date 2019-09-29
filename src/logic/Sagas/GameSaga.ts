@@ -83,7 +83,13 @@ function* MovePony({ payload, type }: IAction) {
       mazeId,
       moveInfo
     });
-    if (moveResult["state-result"] === MoveStatus.ACCEPTED) {
+    if (moveResult["state-result"] === MoveStatus.GAME_WIN) {
+      //game win
+      yield put(GameStateActions.setGameWin());
+    } else if (moveResult["state-result"] === MoveStatus.GAME_OVER) {
+      //game over
+      yield put(GameStateActions.setGameStop());
+    } else if (moveResult["state-result"] === MoveStatus.ACCEPTED) {
       // yield put(PonyActions.setPonyPosition(payload));
       const board: IBoardResponse = yield call(mApi.getMaze, mazeId);
       //Set Board

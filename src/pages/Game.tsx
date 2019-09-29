@@ -14,6 +14,7 @@ import IDomokun from "../logic/Interfaces/IDomokun";
 import IEndPoint from "../logic/Interfaces/IEndPoint";
 import IBoard from "../logic/Interfaces/IBoard";
 import IPony from "../logic/Interfaces/IPony";
+import GameStateEnum from "../logic/Enums/GemeState";
 import * as ponyActions from "../logic/Actions/PonyActions";
 interface IState {}
 interface IProps {
@@ -22,6 +23,8 @@ interface IProps {
   endPoint: IEndPoint;
   board: IBoard;
   pony: IPony;
+  gameState: GameStateEnum;
+  ponies: IPony[];
   movePony: (position: number) => void;
 }
 class Page extends Component<IProps, IState> {
@@ -61,21 +64,26 @@ class Page extends Component<IProps, IState> {
       endPoint: { position: endPointPosition },
       pony: { ponyName, ponyPosition, ponySprite },
       board: { width, height, data },
-      movePony
+      movePony,
+      gameState,
+      ponies
     } = this.props;
     const total = width * height;
+    const currentPony: IPony =
+      ponies.find(p => p.ponyName === ponyName) || ponies[0];
     return (
       <Container useBackground={true} useBorderRadius={true} direction="column">
         <Hud>
           <HudCharacter
-            src={require("../assets/images/ponies/Twinkleshine.png")}
+            src={require(`../assets/images/ponies/${currentPony.ponySprite}`)}
           />
           <HudStatus>
             <CircleStatus status={StatusEnum.NORMAL} />
           </HudStatus>
         </Hud>
         <NotificationBar>
-          <span>I'm a Notification</span>
+          {gameState === GameStateEnum.WIN && <h1>YOU WOOOOOOON</h1>}
+          {gameState === GameStateEnum.LOOSE && <h1>YOU WOOOOOOON</h1>}
         </NotificationBar>
         <BoardContainer>
           {Array.from(Array(total).keys()).map((cell, index) => {
@@ -107,7 +115,7 @@ class Page extends Component<IProps, IState> {
               >
                 {index === ponyPosition && (
                   <img
-                    src={require("../assets/images/ponies/Twinkleshine.png")}
+                    src={require(`../assets/images/ponies/${currentPony.ponySprite}`)}
                   />
                 )}
               </BoardCell>
@@ -123,7 +131,9 @@ const mapStateToProps = (state: any) => ({
   domokun: state.domokun,
   endPoint: state.endPoint,
   board: state.board,
-  pony: state.pony
+  pony: state.pony,
+  gameState: state.gameState,
+  ponies: state.ponies
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({

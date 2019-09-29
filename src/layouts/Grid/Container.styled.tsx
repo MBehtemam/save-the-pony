@@ -11,6 +11,8 @@ const container = styled.div<IContainerProps>`
   display: flex;
   width: ${props => props.width || "100%"};
   flex-direction: ${props => props.direction || "row"};
+  font-family: "Pacifico", cursive;
+  color: white;
   border-top-right-radius: ${props =>
     props.useBorderRadius ? props.theme.size.borderRadius : "inherit"};
   border-top-left-radius: "";

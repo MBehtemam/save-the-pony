@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const PonyButton = styled.div`
-  width: 250px;
-  height: 250px;
-  background-color: brown;
+  width: 150px;
+  height: 150px;
+  background-color: #880e4f;
   padding: 10px;
   border: 1px solid brown;
   border-radius: 15px;
@@ -11,11 +11,9 @@ const PonyButton = styled.div`
   &.selected {
     border-color: white;
   }
-  figure {
-    img {
-      width: 100%;
-      height: 100%;
-    }
+  img {
+    width: 100%;
+    height: 100%;
   }
 `;
 export default PonyButton;
