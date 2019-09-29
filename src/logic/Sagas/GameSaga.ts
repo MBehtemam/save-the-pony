@@ -18,9 +18,11 @@ import getBoardHeight from "./selectors/getBoardHeight";
 import getMazeInfo from "./selectors/getMazeInfo";
 import getMaezeId from "./selectors/getMazeId";
 import getPonyPosition from "./selectors/getPonyPosition";
+import getBoardData from "./selectors/getBoardData";
 import IMove from "../Interfaces/IMove";
 import IMoveStatusResponse from "../Interfaces/IMoveStatusResponse";
 import MoveStatus from "../Enums/MoveStatus";
+import IAction from "../Interfaces/IAction";
 
 const mApi = new MazeAPI();
 
@@ -39,7 +41,6 @@ function* createGame() {
   //Setting Player Name
   yield put(PonyActions.setPonyName(mazeInfo["maze-player-name"]));
   const board: IBoardResponse = yield call(mApi.getMaze, mazeId);
-  console.log(board);
   //Set Board
   yield put(
     MazeActions.setBoard({
@@ -65,16 +66,16 @@ function* createGame() {
   }
 }
 
-function* MovePony(interestedPosition: number) {
+function* MovePony({ payload, type }: IAction) {
   const mazeId: string = yield select(getMaezeId);
   const boardWidth = yield select(getBoardWidth);
-  const boardHeight = yield select(getBoardHeight);
   const ponyPosition = yield select(getPonyPosition);
+  const boardData = yield select(getBoardData);
   const moveDirection: IDirectionResponse = getMoveDirection({
-    boardHeight,
-    boardWidth,
+    data: boardData,
+    width: boardWidth,
     ponyPosition,
-    interestedPosition
+    interestedPosition: payload
   });
   if (moveDirection.ok) {
     const moveInfo: IMove = { direction: moveDirection.direction };
@@ -83,7 +84,21 @@ function* MovePony(interestedPosition: number) {
       moveInfo
     });
     if (moveResult["state-result"] === MoveStatus.ACCEPTED) {
-      put(PonyActions.setPonyPosition(interestedPosition));
+      // yield put(PonyActions.setPonyPosition(payload));
+      const board: IBoardResponse = yield call(mApi.getMaze, mazeId);
+      //Set Board
+      yield put(
+        MazeActions.setBoard({
+          data: board.data,
+          difficulty: board.difficulty,
+          height: board.size[1],
+          width: board.size[0]
+        })
+      );
+      //Set Pony
+      yield put(PonyActions.setPonyPosition(board.pony[0]));
+      //Set Domokun
+      yield put(DomokunActions.setDomokunPosition(board.domokun[0]));
     }
   } else {
     //raise some action for bad selecting
@@ -92,4 +107,5 @@ function* MovePony(interestedPosition: number) {
 
 export function* rootGameSaga() {
   yield takeEvery(ActionTypes.CUSTOM_GAME_CREATE, createGame);
+  yield takeEvery(ActionTypes.PONY_MOVE, MovePony);
 }

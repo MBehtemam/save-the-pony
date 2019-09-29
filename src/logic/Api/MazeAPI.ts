@@ -35,6 +35,10 @@ class MazeAPI {
     try {
       const response = await fetch(url, {
         method: HttpEnum.POST,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(moveInfo)
       });
       const data = await response.json();

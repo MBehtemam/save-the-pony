@@ -14,16 +14,17 @@ import IDomokun from "../logic/Interfaces/IDomokun";
 import IEndPoint from "../logic/Interfaces/IEndPoint";
 import IBoard from "../logic/Interfaces/IBoard";
 import IPony from "../logic/Interfaces/IPony";
-
-interface IState {
+import * as ponyActions from "../logic/Actions/PonyActions";
+interface IState {}
+interface IProps {
   walls: string[][];
   domokun: IDomokun;
   endPoint: IEndPoint;
   board: IBoard;
   pony: IPony;
+  movePony: (position: number) => void;
 }
-interface IProps {}
-class Page extends Component<IState, IProps> {
+class Page extends Component<IProps, IState> {
   getRowParity = (total: number, width: number, index: number): ParityEnum => {
     if (total % 2 !== 0) {
       return ParityEnum.EVEN;
@@ -59,7 +60,8 @@ class Page extends Component<IState, IProps> {
       domokun: { position: domokunPosition },
       endPoint: { position: endPointPosition },
       pony: { ponyName, ponyPosition, ponySprite },
-      board: { width, height, data }
+      board: { width, height, data },
+      movePony
     } = this.props;
     const total = width * height;
     return (
@@ -79,6 +81,7 @@ class Page extends Component<IState, IProps> {
           {Array.from(Array(total).keys()).map((cell, index) => {
             return (
               <BoardCell
+                onClick={() => movePony(index)}
                 key={index}
                 size={(100 / width).toString()}
                 rowParity={this.getRowParity(total, width, index)}
@@ -122,7 +125,10 @@ const mapStateToProps = (state: any) => ({
   board: state.board,
   pony: state.pony
 });
-const mapDispatchToProps = (dispatch: Function) => ({});
+
+const mapDispatchToProps = (dispatch: Function) => ({
+  movePony: (position: number) => dispatch(ponyActions.movePony(position))
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps

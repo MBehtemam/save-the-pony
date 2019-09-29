@@ -1,63 +1,61 @@
 import MoveEnum from "../Enums/MoveEnum";
 import IDirectionResponse from "../Interfaces/IDirectionResponse";
 interface IProps {
-  boardWidth: number;
-  boardHeight: number;
+  data: string[][];
   ponyPosition: number;
   interestedPosition: number;
+  width: number;
 }
 
 const getMoveDirection = ({
-  boardHeight,
-  boardWidth,
+  data,
+  ponyPosition,
   interestedPosition,
-  ponyPosition
+  width
 }: IProps): IDirectionResponse => {
-  const total = boardHeight * boardWidth;
-  const hasNorth = ponyPosition >= boardWidth;
-  const hasEast = (ponyPosition + 1) % boardWidth !== 0;
-  const hasWest = (ponyPosition + 1) % boardWidth !== 0;
-  const hasSouth = ponyPosition < total - boardWidth;
-  const inTheSameRow =
-    ponyPosition - interestedPosition <= boardWidth ||
-    interestedPosition - ponyPosition <= boardWidth;
-  if (interestedPosition === ponyPosition) {
+  if (ponyPosition === interestedPosition) {
     return {
       ok: true,
       direction: MoveEnum.STAY
     };
-  } else if (hasSouth && ponyPosition + boardWidth === interestedPosition) {
+  } else if (
+    ponyPosition + 1 === interestedPosition &&
+    !data[ponyPosition].includes("east")
+  ) {
+    //means east
     return {
       ok: true,
-      direction: MoveEnum.SOUTH
-    };
-  } else if (hasNorth && ponyPosition - boardWidth === interestedPosition) {
-    return {
-      ok: true,
-      direction: MoveEnum.NORTH
+      direction: MoveEnum.EAST
     };
   } else if (
-    hasWest &&
-    inTheSameRow &&
-    ponyPosition - 1 === interestedPosition
+    ponyPosition - 1 === interestedPosition &&
+    !data[ponyPosition].includes("west")
   ) {
     return {
       ok: true,
       direction: MoveEnum.WEST
     };
   } else if (
-    hasEast &&
-    inTheSameRow &&
-    ponyPosition + 1 === interestedPosition
+    ponyPosition - width === interestedPosition &&
+    !data[ponyPosition].includes("north")
   ) {
     return {
       ok: true,
-      direction: MoveEnum.EAST
+      direction: MoveEnum.NORTH
+    };
+  } else if (
+    ponyPosition + width === interestedPosition &&
+    !data[ponyPosition].includes("south")
+  ) {
+    return {
+      ok: true,
+      direction: MoveEnum.SOUTH
+    };
+  } else {
+    return {
+      ok: false,
+      direction: MoveEnum.WRONG_MOVE
     };
   }
-  return {
-    ok: false,
-    direction: MoveEnum.WRONG_MOVE
-  };
 };
 export default getMoveDirection;

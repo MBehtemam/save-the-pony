@@ -1,99 +1,287 @@
 import MoveEnum from "../Enums/MoveEnum";
 import IDirectionResponse from "../Interfaces/IDirectionResponse";
 import getMoveDirection from "../util/getMoveDirection";
+
+const data = [
+  ["west", "north"],
+  ["west", "north"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["west"],
+  [],
+  ["west"],
+  ["north"],
+  [],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["west"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  [],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west", "north"],
+  ["north"],
+  ["west", "north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["north"],
+  ["west"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  [],
+  ["west"],
+  [],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west", "north"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["north"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  [],
+  ["west"],
+  [],
+  ["west"],
+  [],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  ["west", "north"],
+  [],
+  ["west", "north"],
+  ["north"],
+  ["west"],
+  ["north"],
+  ["west", "north"],
+  [],
+  ["west"],
+  [],
+  ["west"],
+  ["west"],
+  [],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["north"],
+  [],
+  ["west"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  [],
+  ["west", "north"],
+  [],
+  ["west"],
+  ["north"],
+  ["north"],
+  ["west"],
+  [],
+  ["west"],
+  ["west", "north"],
+  ["north"],
+  [],
+  ["west", "north"],
+  [],
+  ["west", "north"],
+  ["north"],
+  ["west"],
+  ["north"],
+  ["north"],
+  ["north"],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west"],
+  ["west", "north"],
+  [],
+  ["west", "north"],
+  [],
+  ["west"],
+  [],
+  ["west", "north"],
+  ["west", "north"],
+  [],
+  ["west"],
+  ["west", "north"],
+  [],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["west", "north"],
+  [],
+  ["west", "north"],
+  ["north"],
+  ["west"],
+  [],
+  ["west"],
+  ["west", "north"],
+  [],
+  ["west"],
+  ["north"],
+  ["west"],
+  ["west", "north"],
+  ["west"],
+  [],
+  ["west", "north"],
+  ["north"],
+  ["west"],
+  ["west"],
+  ["north"],
+  ["north"],
+  [],
+  ["west", "north"],
+  [],
+  ["north"],
+  ["west"],
+  ["west"],
+  [],
+  ["north"],
+  ["north"],
+  [],
+  ["west"],
+  [],
+  ["west", "north"],
+  ["north"],
+  ["north"],
+  ["north"],
+  [],
+  ["north"],
+  ["north"],
+  []
+];
+const width = 15;
 describe("Tests for Get correct move direction", () => {
-  let boardWidth: number;
-  let boardHeight: number;
-  // let interestedPosition:number;
-  // let ponyPosition:number
-  beforeAll(() => {
-    boardHeight = 6;
-    boardWidth = 6;
-  });
   it("should move to West", () => {
     expect(
       getMoveDirection({
-        boardHeight,
-        boardWidth,
-        ponyPosition: 2,
-        interestedPosition: 1
+        data,
+        interestedPosition: 12,
+        ponyPosition: 13,
+        width: 15
       })
     ).toEqual({ ok: true, direction: MoveEnum.WEST });
   });
 
-  it("should stay at same location", () => {
+  it("should move to East", () => {
     expect(
       getMoveDirection({
-        boardHeight,
-        boardWidth,
-        ponyPosition: 2,
-        interestedPosition: 2
-      })
-    ).toEqual({ ok: true, direction: MoveEnum.STAY });
-  });
-
-  it("should move to east", () => {
-    expect(
-      getMoveDirection({
-        boardHeight,
-        boardWidth,
-        ponyPosition: 2,
-        interestedPosition: 3
+        data,
+        interestedPosition: 16,
+        ponyPosition: 15,
+        width: 15
       })
     ).toEqual({ ok: true, direction: MoveEnum.EAST });
   });
 
-  it("should move to north", () => {
+  it("should move to North", () => {
     expect(
       getMoveDirection({
-        boardHeight,
-        boardWidth,
-        ponyPosition: 8,
-        interestedPosition: 2
+        data,
+        interestedPosition: 7,
+        ponyPosition: 22,
+        width: 15
       })
     ).toEqual({ ok: true, direction: MoveEnum.NORTH });
   });
 
-  it("should move to south", () => {
+  it("should move to South", () => {
     expect(
       getMoveDirection({
-        boardHeight,
-        boardWidth,
+        data,
+        interestedPosition: 17,
         ponyPosition: 2,
-        interestedPosition: 8
+        width: 15
       })
     ).toEqual({ ok: true, direction: MoveEnum.SOUTH });
   });
-
-  it("it' a bad south move", () => {
+  it("bad move 1 (2 steps)", () => {
     expect(
       getMoveDirection({
-        boardHeight,
-        boardWidth,
-        ponyPosition: 35,
-        interestedPosition: 8
+        data,
+        interestedPosition: 12,
+        ponyPosition: 15,
+        width: 15
       })
-    ).toHaveProperty("ok", false);
-  });
-  it("it' a bad west move", () => {
-    expect(
-      getMoveDirection({
-        boardHeight,
-        boardWidth,
-        ponyPosition: 5,
-        interestedPosition: 6
-      })
-    ).toHaveProperty("ok", false);
-  });
-
-  it("it' a bad north move", () => {
-    expect(
-      getMoveDirection({
-        boardHeight,
-        boardWidth,
-        ponyPosition: 14,
-        interestedPosition: 2
-      })
-    ).toHaveProperty("ok", false);
+    ).toEqual({ ok: false, direction: MoveEnum.WRONG_MOVE });
   });
 });

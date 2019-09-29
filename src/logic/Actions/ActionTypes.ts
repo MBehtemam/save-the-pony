@@ -68,3 +68,10 @@ export const GAME_SCREEN_SET_WIN = "GAME_SCREEN_SET_WIN";
 //Walls
 export const SET_WALLS = "SET_WALLS";
 export const CLEAR_WALLS = "CLEAR_WALLS";
+
+//Move Pony
+
+export const PONY_MOVE_NORTH = "PONY_MOVE_NORTH";
+export const PONY_MOVE_EAST = "PONY_MOVE_EAST";
+export const PONY_MOVE_WEST = "PONY_MOVE_WEST";
+export const PONY_MOVE_SOUTH = "PONY_MOVE_SOUTH";
