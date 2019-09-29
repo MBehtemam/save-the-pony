@@ -61,3 +61,7 @@ export const CUSTOM_GAME_CREATE_FAILURE = "CUSTOM_GAME_CREATE_FAILURE";
 
 //Game Screens
 export const GAME_SCREEN_SET = "GAME_SCREEN_SET";
+
+//Walls
+export const SET_WALLS = "SET_WALLS";
+export const CLEAR_WALLS = "CLEAR_WALLS";
