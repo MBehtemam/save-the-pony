@@ -5,7 +5,7 @@ import backgroundImage from "../assets/images/header-background.jpg";
 const Header = () => (
   <Row>
     <Col>
-      <header>
+      <header style={{ width: "100%" }}>
         <img
           src={backgroundImage}
           style={{
