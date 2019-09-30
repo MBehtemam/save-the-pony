@@ -5,7 +5,7 @@ import ICustomGame from "../Interfaces/ICustomGame";
 export const initialState: ICustomGame = {
   width: 15,
   height: 15,
-  ponyName: "",
+  ponyName: "Twilight Sparkle",
   mazeId: ""
 };
 const customGameReducer = (

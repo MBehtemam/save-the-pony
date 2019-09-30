@@ -7,8 +7,11 @@ interface ITheme {
     inputBgColor: string;
     inputBorderColor: string;
     success: string;
+    successDarken: string;
     warning: string;
+    warningDarken: string;
     error: string;
+    errorDarken: string;
     textColor: string;
     inputTextColor: string;
     hudBackgroundColor: string;

@@ -69,7 +69,7 @@ const BoardCell = styled.div<IBoardCell>`
   }
   &.endpoint {
     background-image: url(${require("../../assets/images/characters/door.png")});
-    background-color: green;
+    background-color: yellow;
     background-position: center;
     background-size: cover;
   }

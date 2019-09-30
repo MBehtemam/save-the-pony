@@ -16,6 +16,7 @@ import IBoard from "../logic/Interfaces/IBoard";
 import IPony from "../logic/Interfaces/IPony";
 import GameStateEnum from "../logic/Enums/GemeState";
 import * as ponyActions from "../logic/Actions/PonyActions";
+import Alert from "../layouts/Typography/Alert";
 interface IState {}
 interface IProps {
   walls: string[][];
@@ -82,8 +83,12 @@ class Page extends Component<IProps, IState> {
           </HudStatus>
         </Hud>
         <NotificationBar>
-          {gameState === GameStateEnum.WIN && <h1>YOU WOOOOOOON</h1>}
-          {gameState === GameStateEnum.LOOSE && <h1>YOU WOOOOOOON</h1>}
+          {gameState === GameStateEnum.WIN && (
+            <Alert type="success">You Win</Alert>
+          )}
+          {gameState === GameStateEnum.LOOSE && (
+            <Alert type="danger">OHHH, Game Over</Alert>
+          )}
         </NotificationBar>
         <BoardContainer>
           {Array.from(Array(total).keys()).map((cell, index) => {

@@ -65,7 +65,24 @@ function* createGame() {
     yield put(WallsActions.setWalls(board.data));
   }
 }
-
+function* GetBoardInfo() {
+  const mazeId: string = yield select(getMaezeId);
+  // yield put(PonyActions.setPonyPosition(payload));
+  const board: IBoardResponse = yield call(mApi.getMaze, mazeId);
+  //Set Board
+  yield put(
+    MazeActions.setBoard({
+      data: board.data,
+      difficulty: board.difficulty,
+      height: board.size[1],
+      width: board.size[0]
+    })
+  );
+  //Set Pony
+  yield put(PonyActions.setPonyPosition(board.pony[0]));
+  //Set Domokun
+  yield put(DomokunActions.setDomokunPosition(board.domokun[0]));
+}
 function* MovePony({ payload, type }: IAction) {
   const mazeId: string = yield select(getMaezeId);
   const boardWidth = yield select(getBoardWidth);
@@ -88,23 +105,9 @@ function* MovePony({ payload, type }: IAction) {
       yield put(GameStateActions.setGameWin());
     } else if (moveResult["state-result"] === MoveStatus.GAME_OVER) {
       //game over
-      yield put(GameStateActions.setGameStop());
+      yield put(GameStateActions.setGameLoose());
     } else if (moveResult["state-result"] === MoveStatus.ACCEPTED) {
-      // yield put(PonyActions.setPonyPosition(payload));
-      const board: IBoardResponse = yield call(mApi.getMaze, mazeId);
-      //Set Board
-      yield put(
-        MazeActions.setBoard({
-          data: board.data,
-          difficulty: board.difficulty,
-          height: board.size[1],
-          width: board.size[0]
-        })
-      );
-      //Set Pony
-      yield put(PonyActions.setPonyPosition(board.pony[0]));
-      //Set Domokun
-      yield put(DomokunActions.setDomokunPosition(board.domokun[0]));
+      yield call(GetBoardInfo);
     }
   } else {
     //raise some action for bad selecting
