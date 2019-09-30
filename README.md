@@ -2,6 +2,10 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/MBehtemam/save-the-pony/badge.svg)](https://coveralls.io/github/MBehtemam/save-the-pony)
 
+# Project Home
+
+[Github](https://github.com/MBehtemam/save-the-pony)
+
 # Save The Pony Game
 
 ![Pony game screenshot](https://raw.githubusercontent.com/mbehtemam/save-the-pony/master/src/assets/images/capture.gif)
